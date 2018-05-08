@@ -1,9 +1,26 @@
-* {
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,700|Oswald');
+body,
+html {
   box-sizing: border-box;
+  height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
+  overflow: auto;
 }
 
 body {
-  background: #555;
+  background-image: linear-gradient(-9deg, #efe9f3, white 20%);
+  color: #2f304c;
+  font-size: 16px;
+  font-family: 'Maven Pro', Arial, sans-serif;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  box-sizing: border-box;
 }

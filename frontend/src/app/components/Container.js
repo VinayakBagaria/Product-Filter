@@ -39,7 +39,10 @@ class Container extends Component {
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}
         {products.length > 0 && (
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+          <div
+            style={{ opacity: isFetching ? 0.5 : 1 }}
+            className="product-container"
+          >
             {products.map(product => (
               <Product key={product.pk} product={product} />
             ))}
