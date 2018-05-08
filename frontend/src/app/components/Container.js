@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import Product from './Product';
-import { fetchData, changePage } from './../../actions';
+import { fetchData, changePage, brandFilter } from './../../actions';
 import './Container.css';
 
 class Container extends Component {
   state = {
     url: '',
+    value: '',
   };
 
   componentDidMount() {
-    this.setState({
-      url: this.makeUrl(),
-    });
-    const { dispatch, pageNumber } = this.props;
-    dispatch(fetchData(this.state.url, pageNumber));
+    this.dispatchAction();
   }
 
   makeUrl = () => {
@@ -26,16 +23,44 @@ class Container extends Component {
     return `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`;
   };
 
+  dispatchAction() {
+    const newFilter = this.makeUrl();
+    this.setState({
+      url: newFilter,
+    });
+    const { dispatch, pageNumber } = this.props;
+    dispatch(fetchData(newFilter, pageNumber));
+  }
+
   render() {
     const {
-      isFetching, pageNumber, count, products, dispatch,
+      isFetching, count, products, dispatch,
     } = this.props;
     const totalPages = count / products.length;
     return (
       <Fragment>
-        <button onClick={() => dispatch(fetchData(this.makeUrl(), pageNumber))}>
-          abc
-        </button>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.dispatchAction();
+          }}
+        >
+          <input
+            className="search"
+            type="text"
+            name="search"
+            placeholder="Search"
+            required
+            value={this.state.value}
+            onChange={e => {
+              const { value } = e.target;
+              this.setState({ value });
+              this.props.dispatch(brandFilter(value));
+            }}
+          />
+          <input className="btn" type="submit" value="OK" />
+          <input className="btn clear" value="Clear" readOnly />
+        </form>
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}
         {products.length > 0 && (

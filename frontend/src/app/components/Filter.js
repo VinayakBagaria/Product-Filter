@@ -1,5 +1,4 @@
 import React from 'react';
-import BrandFilter from './BrandFilter';
 import PriceFilter from './PriceFilter';
 import ColorFilter from './ColorFilter';
 import './Filter.css';
@@ -11,7 +10,6 @@ class Filter extends React.Component {
   render() {
     return (
       <div className="filter-area">
-        <BrandFilter />
         <PriceFilter />
         <ColorFilter />
       </div>

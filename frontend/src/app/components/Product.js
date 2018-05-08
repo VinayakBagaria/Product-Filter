@@ -11,12 +11,12 @@ const Product = ({
   for (let i = 1; i <= rating; i += 1) {
     stars.push(<li key={i}>
       <span className="fa fa-star" />
-               </li>);
+    </li>);
   }
   for (let i = rating + 1; i <= 5; i += 1) {
     stars.push(<li key={i}>
       <span className="fa fa-star-o" />
-               </li>);
+    </li>);
   }
 
   return (
