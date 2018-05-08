@@ -4,7 +4,7 @@ from rest_framework import generics, mixins
 
 from rest_framework.pagination import PageNumberPagination
 
-from .models import Product
+from .models import Product, Choices
 from .serializers import ProductSerializer
 
 
@@ -23,18 +23,28 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
         qs = Product.objects.all()
         lower_price = self.request.GET.get("pricelow") or 0
         higher_price = self.request.GET.get("pricehigh")
-        color = self.request.GET.get("color") or ''
+        color = self.request.GET.get("color").split(',')
+        color_array = []
+        for c in color:
+            try:
+                color_pk = Choices.objects.get(color=c)
+                color_array.append(color_pk.id)
+            except:
+                pass
+
         brand = self.request.GET.get("brand") or ''
         name = self.request.GET.get("name") or ''
-        print(name)
 
-        qs = qs.filter(price__gte=lower_price).filter(
-            Q(brand__icontains=brand) |
-            Q(name__icontains=name)
-        ).distinct()
+        qs = qs.filter(price__gte=lower_price).distinct()
+
+        if len(color_array):
+            qs = qs.filter(color__in=color_array).distinct()
 
         if higher_price:
             qs = qs.filter(price__lte=higher_price).distinct()
+
+        if len(color) != 0 and len(color_array) == 0:
+            qs = ''
 
         return qs
 
