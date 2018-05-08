@@ -23,14 +23,15 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
         qs = Product.objects.all()
         lower_price = self.request.GET.get("pricelow") or 0
         higher_price = self.request.GET.get("pricehigh")
-        color = self.request.GET.get("color").split(',')
+        color = self.request.GET.get("color") or []
         color_array = []
-        for c in color:
-            try:
-                color_pk = Choices.objects.get(color=c)
-                color_array.append(color_pk.id)
-            except:
-                pass
+        if len(color):
+            for c in color.split(','):
+                try:
+                    color_pk = Choices.objects.get(color=c)
+                    color_array.append(color_pk.id)
+                except:
+                    pass
 
         brand = self.request.GET.get("brand") or ''
         name = self.request.GET.get("name") or ''
