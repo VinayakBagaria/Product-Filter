@@ -1,9 +1,27 @@
+.cat-item {
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  text-align: center;
+  box-shadow: 0 5px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease-in;
+}
+
+.cat-item:hover {
+  transform: scale(1.02);
+}
+
 h4,
 .h4 {
   font-size: 1em;
   font-weight: 700;
   line-height: 1.4;
   margin: 1.4em 0;
+}
+
+.item-body {
+  padding: 0 10px;
 }
 
 img {

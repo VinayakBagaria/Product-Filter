@@ -48,3 +48,8 @@ form .search {
 form .search:hover {
   background-color: #564f5d;
 }
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+}
