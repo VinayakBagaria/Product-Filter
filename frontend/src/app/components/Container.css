@@ -58,3 +58,8 @@ form .search:hover {
   text-align: center;
   width: 50%;
 }
+
+.input-range {
+  width: 60% !important;
+  margin: 100px;
+}
