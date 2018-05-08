@@ -1,0 +1,20 @@
+const initialState = {
+  min_price: 0,
+  high_price: 0,
+  colors: [],
+  brand: '',
+  name: '',
+};
+
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case 'CHANGE_PRICE':
+      return {
+        ...state,
+        min_price: action.payload.start,
+        high_price: action.payload.end,
+      };
+    default:
+      return state;
+  }
+}

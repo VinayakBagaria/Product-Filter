@@ -1,16 +1,17 @@
 import React from 'react';
 import InputRange from 'react-input-range';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import 'react-input-range/lib/css/index.css';
+import { priceFilter } from './../../actions';
 
 class PriceFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: { min: 4000, max: 80000 },
-    };
-  }
+  state = {
+    value: { min: 4000, max: 80000 },
+  };
 
   render() {
+    this.props.dispatch(priceFilter(this.state.value.min, this.state.value.max));
     return (
       <InputRange
         step={100}
@@ -18,9 +19,16 @@ class PriceFilter extends React.Component {
         minValue={0}
         value={this.state.value}
         onChange={value => this.setState({ value })}
+        onChangeComplete={value =>
+          this.props.dispatch(priceFilter(value.min, value.max))
+        }
       />
     );
   }
 }
 
-export default PriceFilter;
+PriceFilter.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(PriceFilter);

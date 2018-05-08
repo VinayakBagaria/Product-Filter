@@ -1,4 +1,4 @@
 import { fetchData, changePage } from './fetch_data';
-import * as filterData from './filter_data';
+import { priceFilter, colorFilter, brandFilter } from './filter_data';
 
-export { fetchData, changePage, filterData };
+export { fetchData, changePage, priceFilter, colorFilter, brandFilter };

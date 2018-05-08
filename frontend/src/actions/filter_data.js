@@ -1,4 +1,4 @@
-const priceFilter = (start: Number, end: Number) => ({
+const priceFilter = (start, end) => ({
   type: 'CHANGE_PRICE',
   payload: {
     start,
@@ -6,12 +6,12 @@ const priceFilter = (start: Number, end: Number) => ({
   },
 });
 
-const colorFilter = (colors: Array<String>) => ({
+const colorFilter = colors => ({
   type: 'CHANGE_COLOR',
   payload: colors,
 });
 
-const brandFilter = (brand: String) => ({
+const brandFilter = brand => ({
   type: 'CHANGE_BRAND',
   payload: brand,
 });
