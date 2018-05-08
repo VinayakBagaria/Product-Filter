@@ -53,3 +53,8 @@ form .search:hover {
   display: flex;
   flex-wrap: wrap;
 }
+
+.multi-select {
+  text-align: center;
+  width: auto;
+}

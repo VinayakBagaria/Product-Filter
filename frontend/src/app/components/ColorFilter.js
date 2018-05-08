@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import * as Animated from 'react-select/lib/animated';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { colorFilter } from './../../actions';
@@ -21,15 +21,17 @@ class ColorFilter extends React.Component {
     this.props.dispatch(colorFilter(this.state.value));
     return (
       <Select
-        closeOnSelect={false}
-        multi
-        onChange={value => {
-          this.setState({ value });
-          this.props.dispatch(colorFilter(value));
+        className="multi-select"
+        closeMenuOnSelect={false}
+        isMulti
+        components={Animated}
+        onChange={value => this.setState({ value })}
+        onMenuClose={() => {
+          const result = this.state.value.map(a => a.label);
+          this.props.dispatch(colorFilter(Object.values(result).toString()));
         }}
         options={COLOURS}
         placeholder="Select your favourite(s)"
-        removeSelected
         simpleValue
         value={this.state.value}
       />
