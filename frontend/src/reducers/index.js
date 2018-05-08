@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import appReducer from './app_reducer';
+import fetchDataReducer from './fetch_data_reducer';
 
 const rootReducer = combineReducers({
-  products: appReducer,
+  result: fetchDataReducer,
 });
 
 export default rootReducer;

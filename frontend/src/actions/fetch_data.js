@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const END_POINT = 'http://localhost:8000/api/all?page=';
+const END_POINT = '/api/all?page=';
 
 const fetchData = (pageNumber: Number = 1) => ({
   type: 'FETCH_DATA',

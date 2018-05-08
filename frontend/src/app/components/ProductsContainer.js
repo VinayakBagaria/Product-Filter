@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Product from './Product';
 import { fetchData } from '../../actions/index';
 
 class ProductsContainer extends Component {
-  state = {
-    pageNumber: 1,
-  };
   componentDidMount() {
-    this.props.dispatch(fetchData(this.state.pageNumber));
+    this.props.dispatch(fetchData(1));
   }
 
   render() {
+    const { count, products } = this.props;
+    console.log(products);
     return (
       <Fragment>
-        {this.props.products.map(product => (
+        <h1>{count}</h1>
+        {products.map(product => (
           <Product key={product.pk} product={product} />
         ))}
       </Fragment>
@@ -25,18 +25,20 @@ class ProductsContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
+    count: state.result.count,
+    products: state.result.products,
   };
 }
 
 ProductsContainer.propTypes = {
-  products: PropTypes.array(PropTypes.shape({
+  count: PropTypes.number.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
     pk: PropTypes.number,
     name: PropTypes.string,
     price: PropTypes.number,
     discount: PropTypes.number,
     brand: PropTypes.string,
-    color: PropTypes.array(PropTypes.string),
+    color: PropTypes.arrayOf(PropTypes.string),
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
