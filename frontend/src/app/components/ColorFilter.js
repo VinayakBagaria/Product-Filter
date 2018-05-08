@@ -33,7 +33,7 @@ class ColorFilter extends React.Component {
           }
         }}
         options={COLOURS}
-        placeholder="Select your favourite(s)"
+        placeholder="Select color(s)"
         simpleValue
         value={this.state.value}
       />

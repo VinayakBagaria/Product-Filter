@@ -1,28 +1,39 @@
 import React from 'react';
-import InputRange from 'react-input-range';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import 'react-input-range/lib/css/index.css';
 import { priceFilter } from './../../actions';
 
 class PriceFilter extends React.Component {
   state = {
-    value: { min: 0, max: 100000 },
+    min: 0,
+    max: 100000,
+    value: 5000,
   };
 
   render() {
-    this.props.dispatch(priceFilter(this.state.value.min, this.state.value.max));
+    const { min, max, value } = this.state;
+    this.props.dispatch(priceFilter(min, value));
     return (
-      <InputRange
-        step={100}
-        maxValue={100000}
-        minValue={0}
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-        onChangeComplete={value =>
-          this.props.dispatch(priceFilter(value.min, value.max))
-        }
-      />
+      <div className="range-slider">
+        <span>
+          from
+          <input type="number" value="25000" min="0" max="120000" /> to
+          <input type="number" value="50000" min="0" max="120000" />
+        </span>
+        <input value="25000" min="0" max="120000" step="500" type="range" />
+        <input value="50000" min="0" max="120000" step="500" type="range" />
+        <svg width="100%" height="24">
+          <line
+            x1="4"
+            y1="0"
+            x2="300"
+            y2="0"
+            stroke="#444"
+            strokeWidth="12"
+            strokeDasharray="1 28"
+          />
+        </svg>
+      </div>
     );
   }
 }

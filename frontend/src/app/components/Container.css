@@ -53,13 +53,3 @@ form .search:hover {
   display: flex;
   flex-wrap: wrap;
 }
-
-.multi-select {
-  text-align: center;
-  width: 50%;
-}
-
-.input-range {
-  width: 60% !important;
-  margin: 100px;
-}
