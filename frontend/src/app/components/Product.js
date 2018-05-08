@@ -1,60 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Product.css';
 
-class Product extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.flipIt = this.flipIt.bind(this);
-
-    this.state = {
-      isFlipped: false,
-    };
+const Product = ({
+  product: {
+    name, brand, price, discount, rating,
+  },
+}) => {
+  const stars = [];
+  for (let i = 1; i <= rating; i += 1) {
+    stars.push(<li key={i}>
+      <span className="fa fa-star" />
+    </li>);
+  }
+  for (let i = rating + 1; i <= 5; i += 1) {
+    stars.push(<li key={i}>
+      <span className="fa fa-star-o" />
+    </li>);
   }
 
-  flipIt() {
-    !this.state.isFlipped
-      ? this.setState({ isFlipped: true })
-      : this.setState({ isFlipped: false });
-  }
-
-  render() {
-    const {
-      id, name, price, discount, brand, color,
-    } = this.props.product;
-    return (
-      <div className="product-card-component" key={id}>
-        <div
-          className={
-            this.state.isFlipped ? 'product-card flipped' : 'product-card'
-          }
-        >
-          <div className="card-front">
-            <div className="price-container">
-              <h3>{name}</h3>
-              <span className="price">{price}</span>
-            </div>
-            <div className="buy-container">
-              <a className="button secondary" onClick={this.flipIt}>
-                More Info
-              </a>
-              <a className="button primary">Buy</a>
-            </div>
-          </div>
-          <div className="card-back">
-            <div className="more-info">
-              {price} - {discount} - {brand}
-            </div>
-            <div className="buy-container">
-              <a className="button secondary" onClick={this.flipIt}>
-                Back
-              </a>
-              <a className="button primary">Buy</a>
-            </div>
-          </div>
+  return (
+    <div className="cat-item">
+      <div className="item-header">
+        <img src="http://placehold.it/242x242" alt="" />
+      </div>
+      <div className="item-body">
+        <h4 className="item-title">{name}</h4>
+        <div className="item-size">{brand}</div>
+        <div className="item-rating rating">
+          <ul className="item-stars rating-stars">{stars}</ul>
+          <span className="item-rating-no rating-no small">300</span>
+        </div>
+        <div className="item-price h4">
+          <strike style={{ opacity: 0.8 }}>Rs. {price}</strike> Rs.{' '}
+          {price * (1 - discount / 100)}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    pk: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    discount: PropTypes.number,
+    brand: PropTypes.string,
+    color: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
+
 export default Product;
