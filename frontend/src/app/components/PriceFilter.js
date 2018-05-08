@@ -5,23 +5,69 @@ import { priceFilter } from './../../actions';
 
 class PriceFilter extends React.Component {
   state = {
-    min: 0,
-    max: 100000,
-    value: 5000,
+    val1: 0,
+    val2: 10000,
+  };
+
+  onRangeChange = first => e => {
+    const val = e.target.value;
+    let slide1 = this.state.val1;
+    let slide2 = this.state.val2;
+
+    if (first) {
+      slide1 = val;
+    } else {
+      slide2 = val;
+    }
+
+    if (slide1 > slide2) {
+      [slide1, slide2] = [slide2, slide1];
+    }
+    this.setState({
+      val1: slide1,
+      val2: slide2,
+    });
   };
 
   render() {
-    const { min, max, value } = this.state;
-    this.props.dispatch(priceFilter(min, value));
+    const { val1, val2 } = this.state;
+    // this.props.dispatch(priceFilter(val1, val2));
     return (
       <div className="range-slider">
         <span>
           from
-          <input type="number" value="25000" min="0" max="120000" /> to
-          <input type="number" value="50000" min="0" max="120000" />
+          <input
+            type="number"
+            value={val1}
+            min="0"
+            max="120000"
+            onChange={this.onRangeChange(true)}
+          />{' '}
+          to
+          <input
+            type="number"
+            value={val2}
+            min="0"
+            max="120000"
+            onChange={this.onRangeChange(false)}
+          />
         </span>
-        <input value="25000" min="0" max="120000" step="500" type="range" />
-        <input value="50000" min="0" max="120000" step="500" type="range" />
+        <input
+          value={val1}
+          min="0"
+          max="120000"
+          step="500"
+          type="range"
+          onChange={this.onRangeChange(true)}
+        />
+        <input
+          value={val2}
+          min="0"
+          max="120000"
+          step="500"
+          type="range"
+          onChange={this.onRangeChange(false)}
+        />
         <svg width="100%" height="24">
           <line
             x1="4"
