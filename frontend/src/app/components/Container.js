@@ -19,7 +19,7 @@ class Container extends Component {
       pageNumber,
     } = this.props;
     this.setState({
-      url: `pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}&`,
+      url: `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`,
     });
     dispatch(fetchData(this.state.url, pageNumber));
   }

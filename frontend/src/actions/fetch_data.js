@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const END_POINT = '/api/all?';
+const END_POINT = '/api/all';
 
 export function requestData() {
   return {
@@ -18,17 +18,17 @@ function receiveData(json, pageNumber) {
   };
 }
 
-const fetchData = (url = 'pricelow=&colors=&brand=', pageNumber = 1) =>
+const fetchData = (url, pageNumber = 1) =>
   function fetcher(dispatch) {
     dispatch(requestData);
-
-    return axios(`${END_POINT}${url}page=${pageNumber}`).then(json =>
+    const axiosEndPoint = `${END_POINT}?page=${pageNumber}${url}`;
+    return axios(axiosEndPoint).then(json =>
       dispatch(receiveData(json, pageNumber)));
   };
 
-const changePage = pageNumber =>
+const changePage = (url, pageNumber) =>
   function changer(dispatch) {
-    dispatch(fetchData(pageNumber));
+    dispatch(fetchData(url, pageNumber));
   };
 
 export { fetchData, changePage };
