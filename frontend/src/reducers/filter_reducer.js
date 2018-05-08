@@ -14,6 +14,11 @@ export default function (state = initialState, action) {
         min_price: action.payload.start,
         high_price: action.payload.end,
       };
+    case 'CHANGE_COLOR':
+      return {
+        ...state,
+        colors: action.payload,
+      };
     default:
       return state;
   }
