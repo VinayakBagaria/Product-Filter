@@ -1,3 +1,8 @@
+#react-paginate {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 #react-paginate ul {
   display: inline-block;
   padding-left: 15px;
