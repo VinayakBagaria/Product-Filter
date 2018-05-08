@@ -1,3 +1,4 @@
+import math
 from django.db.models import Q
 from rest_framework import generics, mixins
 
@@ -20,13 +21,14 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
 
     def get_queryset(self):
         qs = Product.objects.all()
-        query = self.request.GET.get("q")
-        if query is not None:
-            qs = qs.filter(
-                Q(price__icontains=query) |
-                Q(color__icontains=query) |
-                Q(brand__icontains=query)
-            ).distinct()
+        lower_price = self.request.GET.get("pricelow") or 0
+        higher_price = self.request.GET.get("pricehigh") or math.inf
+        color = self.request.GET.get("color") or ''
+        brand = self.request.GET.get("brand") or ''
+        name = self.request.GET.get("name") or ''
+        print(name)
+        qs = qs.filter(price__gte=lower_price,
+                       price__lte=higher_price).distinct()
         return qs
 
     def perform_create(self, serializer):
