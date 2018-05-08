@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "flow-bin": "^0.71.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4"
@@ -11,6 +12,19 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "flow": "flow"
+  },
+  "proxy": "http://localhost:8000",
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "prettier-eslint": "^8.8.1"
   }
 }
