@@ -1,16 +1,7 @@
 import React from 'react';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { brandFilter } from './../../actions';
-
-const COLOURS = [
-  { label: 'Red', value: 'Red' },
-  { label: 'Black', value: 'Black' },
-  { label: 'Blue', value: 'Blue' },
-  { label: 'Yellow', value: 'Yellow' },
-];
 
 class BrandFilter extends React.Component {
   state = {
