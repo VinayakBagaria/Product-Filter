@@ -45,18 +45,23 @@ class Container extends Component {
             this.dispatchAction();
           }}
         >
-          <input
-            type="text"
-            name="search"
-            placeholder="Search by Brand"
-            value={this.state.value}
-            onChange={e => {
-              const { value } = e.target;
-              this.setState({ value });
-              this.props.dispatch(brandFilter(value));
-            }}
-          />
-          <input className="search" type="submit" value="Apply Filters" />
+          <div className="form-group">
+            <input
+              className="form-control"
+              type="text"
+              name="search"
+              placeholder="Search by Brand"
+              value={this.state.value}
+              onChange={e => {
+                const { value } = e.target;
+                this.setState({ value });
+                this.props.dispatch(brandFilter(value));
+              }}
+            />
+          </div>
+          <button className="btn search" type="submit">
+            Apply Filters
+          </button>
         </form>
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}

@@ -23,28 +23,28 @@ form {
   margin: auto;
   max-width: 50vw;
   height: 20vh;
+  padding: 20px;
 }
 
-form input[type='text'] {
-  height: 8vh;
+form .form-group {
+  margin: 0;
   flex: 3;
-  padding: 12px;
   width: 100%;
-  font-size: 16px;
   outline: none;
   border: 1px solid #706778;
   border-radius: 0;
 }
 
-form input[type='text']:focus {
+form .form-group .form-control {
+  padding: 10px;
+}
+
+form .btn.search:focus {
   background-color: #fefbf3;
 }
 
-form .search {
-  height: 8vh;
+form .btn.search {
   flex: 1;
-  padding: 12px;
-  font-size: 16px;
   text-align: center;
   color: #ffffff;
   background-color: #706778;
@@ -52,6 +52,8 @@ form .search {
   border-radius: 0;
   outline: none;
   cursor: pointer;
+  margin: 0;
+  padding: 1.5%;
 }
 
 form .search:hover {
