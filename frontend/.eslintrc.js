@@ -15,7 +15,7 @@ module.exports = {
     // allows omitting parens when there is only 1 arg
     'arrow-parens': [ERROR, 'as-needed'],
     // spacing before and after the arrow
-    'arrow-spacing': [ERROR, { before: true, after: true }],
+    'arrow-spacing': [ERROR, {before: true, after: true}],
     /*
     One True Brace Style - opening brace of a block is placed on the same line as its corresponding statement or declaration. Like for func, if, try, loops
     */
@@ -34,7 +34,7 @@ module.exports = {
     // prefer using double quotes in jsx whenever possible
     'jsx-quotes': [ERROR, 'prefer-double'],
     // allow spacing before and after keywords like func, if, loops
-    'keyword-spacing': [ERROR, { after: true, before: true }],
+    'keyword-spacing': [ERROR, {after: true, before: true}],
     // no function declaration in nested blocks, such as inside if
     'no-inner-declarations': [ERROR, 'functions'],
     'no-multi-spaces': ERROR,
@@ -45,7 +45,7 @@ module.exports = {
     */
     'no-shadow': ERROR,
     // all named args must be used, and there must be no unused variables
-    'no-unused-vars': [ERROR, { args: 'all' }],
+    'no-unused-vars': [ERROR, {args: 'all'}],
     // unnecessary to concatenate two strings together
     'no-useless-concat': ERROR,
     /*
@@ -57,8 +57,8 @@ module.exports = {
       'single',
       {
         avoidEscape: true,
-        allowTemplateLiterals: true
-      }
+        allowTemplateLiterals: true,
+      },
     ],
     /*
     applied on blocks that don't begin on a new line
@@ -73,12 +73,12 @@ module.exports = {
     // not use ={true} when passing truthy values as props
     'react/jsx-boolean-value': [ERROR, 'never'],
     // allow JSX to be used only in .js files
-    'react/jsx-filename-extension': [ERROR, { extensions: ['.js'] }],
+    'react/jsx-filename-extension': [ERROR, {extensions: ['.js']}],
     'react/boolean-prop-naming': [
       ERROR,
       {
-        rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+'
-      }
+        rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
+      },
     ],
     /*
     Components without children can be self-closed to avoid unnecessary extra closing tag.
@@ -86,9 +86,10 @@ module.exports = {
     'react/self-closing-comp': ERROR,
     'react/no-unused-state': ERROR,
     // allow default values for unrequired props
-    'react/default-props-match-prop-types': OFF
+    'react/default-props-match-prop-types': OFF,
+    'react/forbid-prop-types': OFF,
   },
   env: {
-    browser: true
-  }
+    browser: true,
+  },
 };

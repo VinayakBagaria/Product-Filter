@@ -1,5 +1,3 @@
-import ProductList from './ProductList';
-import SearchBar from './SearchBar';
-import Filters from './Filters';
+import ProductsContainer from './ProductsContainer';
 
-export { ProductList, SearchBar, Filters };
+export default ProductsContainer;
