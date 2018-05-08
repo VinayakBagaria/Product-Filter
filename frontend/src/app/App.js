@@ -1,9 +1,10 @@
 import React from 'react';
-import Container from './components/index';
+import { Container, Filter } from './components/index';
 import './App.css';
 
 const App = () => (
   <div className="App">
+    <Filter />
     <Container />
   </div>
 );

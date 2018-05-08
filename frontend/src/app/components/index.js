@@ -1,3 +1,4 @@
 import Container from './Container';
+import Filter from './Filter';
 
-export default Container;
+export { Container, Filter };
