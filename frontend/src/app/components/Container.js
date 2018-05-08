@@ -9,20 +9,22 @@ class Container extends Component {
   state = {
     url: '',
   };
+
   componentDidMount() {
-    const {
-      minPrice,
-      highPrice,
-      colors,
-      brand,
-      dispatch,
-      pageNumber,
-    } = this.props;
     this.setState({
-      url: `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`,
+      url: this.makeUrl,
     });
+    const { dispatch, pageNumber } = this.props;
     dispatch(fetchData(this.state.url, pageNumber));
   }
+
+  makeUrl = () => {
+    const {
+      minPrice, highPrice, colors, brand,
+    } = this.props;
+    return `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`;
+  };
+
   render() {
     const {
       isFetching, pageNumber, count, products, dispatch,
@@ -42,6 +44,9 @@ class Container extends Component {
     }
     return (
       <Fragment>
+        <button onClick={() => dispatch(fetchData(this.makeUrl(), pageNumber))}>
+          abc
+        </button>
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}
         {products.length > 0 && (
