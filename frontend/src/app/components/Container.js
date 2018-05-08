@@ -6,8 +6,22 @@ import Button from './Button';
 import { fetchData, changePage } from './../../actions';
 
 class Container extends Component {
+  state = {
+    url: '',
+  };
   componentDidMount() {
-    this.props.dispatch(fetchData(this.props.pageNumber));
+    const {
+      minPrice,
+      highPrice,
+      colors,
+      brand,
+      dispatch,
+      pageNumber,
+    } = this.props;
+    this.setState({
+      url: `pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}&`,
+    });
+    dispatch(fetchData(this.state.url, pageNumber));
   }
   render() {
     const {
@@ -22,7 +36,7 @@ class Container extends Component {
         disabled={pageNumber === i}
         onClick={e => {
             e.preventDefault();
-            dispatch(changePage(i));
+            dispatch(changePage(this.state.url, i));
           }}
       />);
     }
@@ -47,11 +61,18 @@ function mapStateToProps(state) {
   const {
     isFetching, products, count, pageNumber,
   } = state.result;
+  const {
+    minPrice, highPrice, colors, brand,
+  } = state.filters;
   return {
     isFetching,
     pageNumber,
     products,
     count,
+    minPrice,
+    highPrice,
+    colors,
+    brand,
   };
 }
 
@@ -67,6 +88,10 @@ Container.propTypes = {
     brand: PropTypes.string,
     color: PropTypes.arrayOf(PropTypes.string),
   })).isRequired,
+  minPrice: PropTypes.number.isRequired,
+  highPrice: PropTypes.number.isRequired,
+  colors: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

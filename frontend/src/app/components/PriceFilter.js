@@ -7,7 +7,7 @@ import { priceFilter } from './../../actions';
 
 class PriceFilter extends React.Component {
   state = {
-    value: { min: 4000, max: 80000 },
+    value: { min: 0, max: 100000 },
   };
 
   render() {

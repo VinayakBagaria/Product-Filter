@@ -25,7 +25,7 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
         lower_price = self.request.GET.get("pricelow") or 0
         higher_price = self.request.GET.get("pricehigh")
 
-        color = self.request.GET.get("color") or []
+        color = self.request.GET.get("colors") or []
         color_array = []
         if len(color):
             for c in color.split(','):

@@ -1,7 +1,7 @@
 const initialState = {
-  min_price: 0,
-  high_price: 0,
-  colors: [],
+  minPrice: 0,
+  highPrice: 80000,
+  colors: '',
   brand: '',
   name: '',
 };
@@ -11,8 +11,8 @@ export default function (state = initialState, action) {
     case 'CHANGE_PRICE':
       return {
         ...state,
-        min_price: action.payload.start,
-        high_price: action.payload.end,
+        minPrice: action.payload.start,
+        highPrice: action.payload.end,
       };
     case 'CHANGE_COLOR':
       return {

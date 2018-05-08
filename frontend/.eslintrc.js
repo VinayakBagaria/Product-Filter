@@ -74,12 +74,6 @@ module.exports = {
     'react/jsx-boolean-value': [ERROR, 'never'],
     // allow JSX to be used only in .js files
     'react/jsx-filename-extension': [ERROR, {extensions: ['.js']}],
-    'react/boolean-prop-naming': [
-      ERROR,
-      {
-        rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
-      },
-    ],
     /*
     Components without children can be self-closed to avoid unnecessary extra closing tag.
     */
@@ -88,6 +82,7 @@ module.exports = {
     // allow default values for unrequired props
     'react/default-props-match-prop-types': OFF,
     'react/forbid-prop-types': OFF,
+    'react/no-did-mount-set-state': OFF,
   },
   env: {
     browser: true,

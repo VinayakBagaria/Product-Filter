@@ -14,7 +14,7 @@ const COLOURS = [
 
 class ColorFilter extends React.Component {
   state = {
-    value: [],
+    value: '',
   };
 
   render() {
