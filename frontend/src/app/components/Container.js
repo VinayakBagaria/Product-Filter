@@ -10,9 +10,7 @@ class Container extends Component {
     this.props.dispatch(fetchData(this.props.page));
   }
   render() {
-    const {
-      count, products, dispatch, page,
-    } = this.props;
+    const { count, products, dispatch } = this.props;
     const totalPages = count / products.length;
     const buttons = [];
     for (let i = 1; i <= totalPages; i += 1) {
