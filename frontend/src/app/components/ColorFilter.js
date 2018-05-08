@@ -12,7 +12,7 @@ const COLOURS = [
   { label: 'Yellow', value: 'Yellow' },
 ];
 
-class PriceFilter extends React.Component {
+class ColorFilter extends React.Component {
   state = {
     value: [],
   };
@@ -37,8 +37,8 @@ class PriceFilter extends React.Component {
   }
 }
 
-PriceFilter.propTypes = {
+ColorFilter.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(PriceFilter);
+export default connect()(ColorFilter);

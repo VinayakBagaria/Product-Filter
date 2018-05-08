@@ -19,6 +19,11 @@ export default function (state = initialState, action) {
         ...state,
         colors: action.payload,
       };
+    case 'CHANGE_BRAND':
+      return {
+        ...state,
+        brand: action.payload,
+      };
     default:
       return state;
   }
