@@ -46,10 +46,9 @@ class Container extends Component {
           }}
         >
           <input
-            className="search"
             type="text"
             name="search"
-            placeholder="Search"
+            placeholder="Search by Brand"
             required
             value={this.state.value}
             onChange={e => {
@@ -58,8 +57,7 @@ class Container extends Component {
               this.props.dispatch(brandFilter(value));
             }}
           />
-          <input className="btn" type="submit" value="OK" />
-          <input className="btn clear" value="Clear" readOnly />
+          <input className="search" type="submit" value="Apply Filters" />
         </form>
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}
