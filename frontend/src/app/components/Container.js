@@ -49,7 +49,6 @@ class Container extends Component {
             type="text"
             name="search"
             placeholder="Search by Brand"
-            required
             value={this.state.value}
             onChange={e => {
               const { value } = e.target;
