@@ -27,8 +27,10 @@ class ColorFilter extends React.Component {
         components={Animated}
         onChange={value => this.setState({ value })}
         onMenuClose={() => {
-          const result = this.state.value.map(a => a.label);
-          this.props.dispatch(colorFilter(Object.values(result).toString()));
+          if (this.state.value.length) {
+            const result = this.state.value.map(a => a.label);
+            this.props.dispatch(colorFilter(Object.values(result).toString()));
+          }
         }}
         options={COLOURS}
         placeholder="Select your favourite(s)"
