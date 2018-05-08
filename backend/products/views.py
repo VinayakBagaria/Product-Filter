@@ -22,13 +22,20 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
     def get_queryset(self):
         qs = Product.objects.all()
         lower_price = self.request.GET.get("pricelow") or 0
-        higher_price = self.request.GET.get("pricehigh") or math.inf
+        higher_price = self.request.GET.get("pricehigh")
         color = self.request.GET.get("color") or ''
         brand = self.request.GET.get("brand") or ''
         name = self.request.GET.get("name") or ''
         print(name)
-        qs = qs.filter(price__gte=lower_price,
-                       price__lte=higher_price).distinct()
+
+        qs = qs.filter(price__gte=lower_price).filter(
+            Q(brand__icontains=brand) |
+            Q(name__icontains=name)
+        ).distinct()
+
+        if higher_price:
+            qs = qs.filter(price__lte=higher_price).distinct()
+
         return qs
 
     def perform_create(self, serializer):
