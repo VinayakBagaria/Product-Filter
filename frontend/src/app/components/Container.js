@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ReactPaginate from 'react-paginate';
 import Product from './Product';
-import Button from './Button';
 import { fetchData, changePage } from './../../actions';
+import './Container.css';
 
 class Container extends Component {
   state = {
@@ -12,7 +13,7 @@ class Container extends Component {
 
   componentDidMount() {
     this.setState({
-      url: this.makeUrl,
+      url: this.makeUrl(),
     });
     const { dispatch, pageNumber } = this.props;
     dispatch(fetchData(this.state.url, pageNumber));
@@ -30,18 +31,6 @@ class Container extends Component {
       isFetching, pageNumber, count, products, dispatch,
     } = this.props;
     const totalPages = count / products.length;
-    const buttons = [];
-    for (let i = 1; i <= totalPages; i += 1) {
-      buttons.push(<Button
-        key={i}
-        text={i}
-        disabled={pageNumber === i}
-        onClick={e => {
-            e.preventDefault();
-            dispatch(changePage(this.state.url, i));
-          }}
-      />);
-    }
     return (
       <Fragment>
         <button onClick={() => dispatch(fetchData(this.makeUrl(), pageNumber))}>
@@ -56,7 +45,23 @@ class Container extends Component {
             ))}
           </div>
         )}
-        {buttons}
+        <div id="react-paginate">
+          <ReactPaginate
+            previousLabel="previous"
+            nextLabel="next"
+            breakLabel={<a href="/">...</a>}
+            breakClassName="break-me"
+            pageCount={totalPages}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={data =>
+              dispatch(changePage(this.state.url, data.selected + 1))
+            }
+            containerClassName="pagination"
+            subContainerClassName="pages pagination"
+            activeClassName="active"
+          />
+        </div>
       </Fragment>
     );
   }
