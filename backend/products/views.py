@@ -21,8 +21,10 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
 
     def get_queryset(self):
         qs = Product.objects.all()
+
         lower_price = self.request.GET.get("pricelow") or 0
         higher_price = self.request.GET.get("pricehigh")
+
         color = self.request.GET.get("color") or []
         color_array = []
         if len(color):
@@ -35,6 +37,12 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
 
         brand = self.request.GET.get("brand") or ''
         name = self.request.GET.get("name") or ''
+
+        if(name):
+            qs = qs.filter(name__contains=name).distinct()
+
+        if(brand):
+            qs = qs.filter(brand__contains=brand).distinct()
 
         qs = qs.filter(price__gte=lower_price).distinct()
 
