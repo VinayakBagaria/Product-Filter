@@ -5,7 +5,7 @@ import Product from './Product';
 import Button from './Button';
 import { fetchData, changePage } from './../../actions';
 
-class ProductsContainer extends Component {
+class Container extends Component {
   componentDidMount() {
     this.props.dispatch(fetchData(this.props.page));
   }
@@ -15,13 +15,13 @@ class ProductsContainer extends Component {
     } = this.props;
     const totalPages = count / products.length;
     const buttons = [];
-    for (let i = 1; i < totalPages; i += 1) {
+    for (let i = 1; i <= totalPages; i += 1) {
       buttons.push(<Button
         key={i}
         text={i}
-        onClick={() => {
+        onClick={e => {
+            e.preventDefault();
             dispatch(changePage(i));
-            dispatch(fetchData(page));
           }}
       />);
     }
@@ -37,15 +37,15 @@ class ProductsContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { page, products, count } = state.result;
+  const { products, count } = state.result;
   return {
-    page,
+    page: state.page,
     products,
     count,
   };
 }
 
-ProductsContainer.propTypes = {
+Container.propTypes = {
   count: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({
@@ -59,4 +59,4 @@ ProductsContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ProductsContainer);
+export default connect(mapStateToProps)(Container);
