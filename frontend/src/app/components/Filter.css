@@ -9,82 +9,11 @@
   width: 50%;
 }
 
-input[type='range'] {
-  margin: auto;
-  -webkit-appearance: none;
-  position: relative;
-  overflow: hidden;
-  height: 40px;
-  width: 200px;
-  cursor: pointer;
-  border-radius: 0; /* iOS */
-}
-
-::-webkit-slider-runnable-track {
-  background: #ddd;
-}
-
-/*
-* 1. Set to 0 width and remove border for a slider without a thumb
-*/
-::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px; /* 1 */
-  height: 40px;
-  background: #fff;
-  box-shadow: -100vw 0 0 100vw dodgerblue;
-  border: 2px solid #999; /* 1 */
-}
-
-::-moz-range-track {
-  height: 40px;
-  background: #ddd;
-}
-
-::-moz-range-thumb {
-  background: #fff;
-  height: 40px;
-  width: 20px;
-  border: 3px solid #999;
-  border-radius: 0 !important;
-  box-shadow: -100vw 0 0 100vw dodgerblue;
-  box-sizing: border-box;
-}
-
-::-ms-fill-lower {
-  background: dodgerblue;
-}
-
-::-ms-thumb {
-  background: #fff;
-  border: 2px solid #999;
-  height: 40px;
-  width: 20px;
-  box-sizing: border-box;
-}
-
-::-ms-ticks-after {
-  display: none;
-}
-
-::-ms-ticks-before {
-  display: none;
-}
-
-::-ms-track {
-  background: #ddd;
-  color: transparent;
-  height: 40px;
-  border: none;
-}
-
-::-ms-tooltip {
-  display: none;
-}
 input {
   box-shadow: 0;
   outline: 0;
 }
+
 .range-slider {
   width: 300px;
   margin: auto;
@@ -92,42 +21,47 @@ input {
   position: relative;
   height: 6em;
 }
+
 .range-slider svg,
 .range-slider input[type='range'] {
   position: absolute;
   left: 0;
   bottom: 0;
 }
+
 input[type='number'] {
   border: 1px solid #ddd;
   text-align: center;
   font-size: 1.6em;
   -moz-appearance: textfield;
 }
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
+
 input[type='number']:invalid,
 input[type='number']:out-of-range {
   border: 2px solid #ff6347;
 }
+
 input[type='range'] {
   -webkit-appearance: none;
   width: 100%;
 }
+
 input[type='range']:focus {
   outline: none;
 }
+
 input[type='range']:focus::-webkit-slider-runnable-track {
   background: #2497e3;
 }
+
 input[type='range']:focus::-ms-fill-lower {
   background: #2497e3;
 }
+
 input[type='range']:focus::-ms-fill-upper {
   background: #2497e3;
 }
+
 input[type='range']::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
@@ -138,6 +72,7 @@ input[type='range']::-webkit-slider-runnable-track {
   box-shadow: none;
   border: 0;
 }
+
 input[type='range']::-webkit-slider-thumb {
   z-index: 2;
   position: relative;
@@ -151,6 +86,7 @@ input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -7px;
 }
+
 input[type='range']::-moz-range-track {
   width: 100%;
   height: 5px;
@@ -161,6 +97,7 @@ input[type='range']::-moz-range-track {
   box-shadow: none;
   border: 0;
 }
+
 input[type='range']::-moz-range-thumb {
   z-index: 2;
   position: relative;
@@ -172,6 +109,7 @@ input[type='range']::-moz-range-thumb {
   background: #a1d0ff;
   cursor: pointer;
 }
+
 input[type='range']::-ms-track {
   width: 100%;
   height: 5px;
@@ -181,6 +119,7 @@ input[type='range']::-ms-track {
   border-color: transparent;
   color: transparent;
 }
+
 input[type='range']::-ms-fill-lower,
 input[type='range']::-ms-fill-upper {
   background: #2497e3;
@@ -188,6 +127,7 @@ input[type='range']::-ms-fill-upper {
   box-shadow: none;
   border: 0;
 }
+
 input[type='range']::-ms-thumb {
   z-index: 2;
   position: relative;

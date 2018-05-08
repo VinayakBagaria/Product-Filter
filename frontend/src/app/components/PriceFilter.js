@@ -10,7 +10,7 @@ class PriceFilter extends React.Component {
   };
 
   onRangeChange = first => e => {
-    const val = e.target.value;
+    const val = parseFloat(e.target.value);
     let slide1 = this.state.val1;
     let slide2 = this.state.val2;
 
@@ -31,7 +31,7 @@ class PriceFilter extends React.Component {
 
   render() {
     const { val1, val2 } = this.state;
-    // this.props.dispatch(priceFilter(val1, val2));
+    this.props.dispatch(priceFilter(val1, val2));
     return (
       <div className="range-slider">
         <span>
