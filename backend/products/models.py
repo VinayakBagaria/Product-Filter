@@ -2,22 +2,26 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+class Choices(models.Model):
+    color = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.color
+
+
 class Product(models.Model):
-    COLORS = (
-        ('Red', 'Red'),
-        ('Black', 'Black'),
-        ('Blue', 'Blue'),
-        ('Green', 'Green'),
-        ('Yellow', 'Yellow')
-    )
     name = models.CharField(max_length=80)
     rating = models.FloatField(
         default=1.0,
         validators=[MaxValueValidator(5.0), MinValueValidator(1.0)]
     )
-    price = models.PositiveIntegerField()
+    price = models.PositiveIntegerField(default=0)
     discount = models.PositiveSmallIntegerField(
+        default=0,
         validators=[MaxValueValidator(100)]
     )
     brand = models.CharField(max_length=80)
-    color = models.CharField(max_length=10, choices=COLORS)
+    color = models.ManyToManyField(Choices)
+
+    def __str__(self):
+        return self.name
