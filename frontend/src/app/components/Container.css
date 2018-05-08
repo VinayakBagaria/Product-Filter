@@ -17,10 +17,12 @@ form {
   align-items: center;
   margin: auto;
   max-width: 50vw;
+  height: 20vh;
 }
 
 form input[type='text'] {
-  flex: 1;
+  height: 8vh;
+  flex: 3;
   padding: 12px;
   width: 100%;
   font-size: 16px;
@@ -34,7 +36,9 @@ form input[type='text']:focus {
 }
 
 form .search {
-  padding: 12px 24px;
+  height: 8vh;
+  flex: 1;
+  padding: 12px;
   font-size: 16px;
   text-align: center;
   color: #ffffff;
@@ -52,4 +56,8 @@ form .search:hover {
 .product-container {
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }

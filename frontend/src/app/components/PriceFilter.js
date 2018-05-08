@@ -6,7 +6,7 @@ import { priceFilter } from './../../actions';
 class PriceFilter extends React.Component {
   state = {
     val1: 0,
-    val2: 10000,
+    val2: 1000000,
   };
 
   onRangeChange = first => e => {
@@ -34,6 +34,7 @@ class PriceFilter extends React.Component {
     this.props.dispatch(priceFilter(val1, val2));
     return (
       <div className="range-slider">
+        <h3>Price Filter</h3>
         <span>
           from
           <input
