@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import Product from './Product';
+import Form from './Form';
 import { fetchData, changePage, brandFilter } from './../../actions';
 import './Container.css';
 
@@ -39,30 +40,18 @@ class Container extends Component {
     const totalPages = count / products.length;
     return (
       <Fragment>
-        <form
+        <Form
+          value={this.state.value}
+          onChange={e => {
+            const { value } = e.target;
+            this.setState({ value });
+            this.props.dispatch(brandFilter(value));
+          }}
           onSubmit={e => {
             e.preventDefault();
             this.dispatchAction();
           }}
-        >
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              name="search"
-              placeholder="Search by Brand"
-              value={this.state.value}
-              onChange={e => {
-                const { value } = e.target;
-                this.setState({ value });
-                this.props.dispatch(brandFilter(value));
-              }}
-            />
-          </div>
-          <button className="btn search" type="submit">
-            Apply Filters
-          </button>
-        </form>
+        />
         {isFetching && products.length === 0 && <h2>Loading...</h2>}
         {!isFetching && products.length === 0 && <h2>Empty.</h2>}
         {products.length > 0 && (

@@ -39,10 +39,6 @@ form .form-group .form-control {
   padding: 10px;
 }
 
-form .btn.search:focus {
-  background-color: #fefbf3;
-}
-
 form .btn.search {
   flex: 1;
   text-align: center;
