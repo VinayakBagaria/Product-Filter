@@ -4,7 +4,7 @@ import './Product.css';
 
 const Product = ({
   product: {
-    name, brand, price, discount, rating,
+    name, brand, price, discount, rating, color,
   },
 }) => {
   const stars = [];
@@ -33,6 +33,9 @@ const Product = ({
         <div className="item-price h4">
           <strike style={{ opacity: 0.8 }}>Rs. {price}</strike> Rs.{' '}
           {price * (1 - discount / 100)}
+        </div>
+        <div className="colors">
+          {color.map(c => <span key={c} style={{ background: c }} />)}
         </div>
       </div>
     </div>

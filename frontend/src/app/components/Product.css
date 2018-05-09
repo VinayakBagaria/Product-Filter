@@ -45,3 +45,16 @@ img {
   color: #817478;
   vertical-align: middle;
 }
+
+.colors {
+  margin-top: -15px;
+  display: flex;
+  justify-content: center;
+}
+
+.colors span {
+  display: block;
+  height: 10px;
+  width: 10px;
+  margin: 4px;
+}
