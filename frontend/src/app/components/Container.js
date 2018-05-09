@@ -18,10 +18,8 @@ class Container extends Component {
     this.dispatchAction();
   }
 
-  makeUrl = () => {
-    const {
-      minPrice, highPrice, colors, brand,
-    } = this.props;
+  makeUrl = (brand = this.props.brand) => {
+    const { minPrice, highPrice, colors } = this.props;
     return `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`;
   };
 
@@ -36,7 +34,7 @@ class Container extends Component {
 
   render() {
     const {
-      isFetching, count, products, dispatch,
+      isFetching, count, products, dispatch, pageNumber,
     } = this.props;
     const totalPages = count / products.length;
     return (
@@ -46,7 +44,7 @@ class Container extends Component {
           onChange={e => {
             const { value } = e.target;
             this.setState({ value });
-            this.props.dispatch(brandFilter(value));
+            dispatch(brandFilter(value, this.makeUrl(value), pageNumber));
           }}
           onSubmit={e => {
             e.preventDefault();
