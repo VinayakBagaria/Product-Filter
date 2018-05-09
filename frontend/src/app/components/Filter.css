@@ -16,10 +16,17 @@ input {
 .range-slider {
   width: 300px;
   margin: 30px auto;
+  margin-bottom: 100px;
   text-align: center;
   position: relative;
   height: 6em;
 }
+
+.range-slider span {
+  display: flex;
+  justify-content: center;
+}
+
 .range-slider svg,
 .range-slider input[type='range'] {
   position: absolute;
@@ -32,6 +39,7 @@ input[type='number'] {
   text-align: center;
   font-size: 1.6em;
   -moz-appearance: textfield;
+  width: 100px;
 }
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
