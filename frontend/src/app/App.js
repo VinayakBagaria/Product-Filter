@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Filter } from './components/index';
+import Container from './components/Container';
+import Filter from './containers/Filter';
 import './App.css';
 
 const App = () => (

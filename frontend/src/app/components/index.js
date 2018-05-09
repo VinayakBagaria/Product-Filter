@@ -1,4 +1,5 @@
 import Container from './Container';
-import Filter from './Filter';
+import ColorFilter from './ColorFilter';
+import PriceFilter from './PriceFilter';
 
-export { Container, Filter };
+export { Container, ColorFilter, PriceFilter };
