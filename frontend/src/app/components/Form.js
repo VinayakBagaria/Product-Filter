@@ -2,21 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Form = ({ value, onChange, onSubmit }) => (
-  <form onSubmit={onSubmit}>
-    <div className="form-group">
-      <input
-        className="form-control"
-        type="text"
-        name="search"
-        placeholder="Search by Brand"
-        value={value}
-        onChange={onChange}
-      />
-    </div>
-    <button className="btn search" type="submit">
+  <div className="form-group">
+    <button className="btn search" onClick={onSubmit}>
       Apply Filters
     </button>
-  </form>
+    <input
+      className="form-control"
+      type="text"
+      name="search"
+      placeholder="Search by Brand"
+      value={value}
+      onChange={onChange}
+    />
+  </div>
 );
 
 Form.propTypes = {

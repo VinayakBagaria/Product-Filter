@@ -17,7 +17,7 @@
   cursor: default;
 }
 
-form {
+.form-group {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,19 +26,12 @@ form {
   padding: 20px;
 }
 
-form .form-group {
-  margin: 0;
-  width: 100%;
-  outline: none;
-  border: 1px solid #706778;
-  border-radius: 0;
-}
-
-form .form-group .form-control {
+.form-group .form-control {
   padding: 10px;
+  margin-top: 40px;
 }
 
-form .btn.search {
+.btn.search {
   text-align: center;
   color: #ffffff;
   background-color: #706778;
@@ -46,18 +39,17 @@ form .btn.search {
   border-radius: 0;
   outline: none;
   cursor: pointer;
-  margin: 20px;
+  margin-top: 0;
 }
 
-form .search:hover {
+.search:hover {
   background-color: #564f5d;
 }
 
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 20px auto;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 }
