@@ -37,6 +37,7 @@ input {
   margin: -40px 0;
 }
 input[type='number'] {
+  margin: 0 8px;
   border: 1px solid #ddd;
   text-align: center;
   font-size: 1.6em;
