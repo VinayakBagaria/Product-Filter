@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 
+const styles = { textAlign: 'center' };
+
 const ProductContainer = ({ isFetching, products }) => (
   <React.Fragment>
-    {isFetching && products.length === 0 && <h2>Loading...</h2>}
-    {!isFetching && products.length === 0 && <h2>Empty.</h2>}
+    {isFetching && products.length === 0 && <h2 style={styles}>Loading...</h2>}
+    {!isFetching && products.length === 0 && <h2 style={styles}>Empty.</h2>}
     {products.length > 0 && (
       <div
         style={{ opacity: isFetching ? 0.5 : 1 }}
