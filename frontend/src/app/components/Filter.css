@@ -15,8 +15,9 @@ input {
 }
 .range-slider {
   width: 300px;
-  margin: 30px auto;
-  margin-bottom: 100px;
+  margin: 0px auto;
+  margin-top: 5px;
+  margin-bottom: 30px;
   text-align: center;
   position: relative;
   height: 6em;
