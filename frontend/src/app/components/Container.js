@@ -66,21 +66,10 @@ class Container extends Component {
 }
 
 function mapStateToProps(state) {
-  const {
-    isFetching, products, count, pageNumber,
-  } = state.result;
-  const {
-    minPrice, highPrice, colors, brand,
-  } = state.filters;
+  const { filters, result } = state;
   return {
-    isFetching,
-    pageNumber,
-    products,
-    count,
-    minPrice,
-    highPrice,
-    colors,
-    brand,
+    ...filters,
+    ...result,
   };
 }
 
