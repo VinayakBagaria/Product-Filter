@@ -1,5 +1,5 @@
-![Image](/mainpage.png)
 <h1 align="center"> Product Filter </h1>
+![Image](/mainpage.png)
 
 Web app for a technical task which displays products with filters as price range, colors; and also search according to brand name.
 [here](https://products-filter.herokuapp.com/)
