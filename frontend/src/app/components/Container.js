@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Form from './Form';
-import ProductContainer from './ProductContainer';
-import Paginator from './Paginator';
-import ProductDescription from './ProductDescription';
+import { Form, ProductContainer, Paginator } from './../containers';
+import ProductDescription from './../ProductDescription';
 import { fetchData, changePage, brandFilter } from './../../actions';
 import './../styles/Container.css';
 

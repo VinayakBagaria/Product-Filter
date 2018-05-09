@@ -1,6 +1,5 @@
 import React from 'react';
-import PriceFilter from './PriceFilter';
-import ColorFilter from './ColorFilter';
+import { PriceFilter, ColorFilter } from './../components';
 import './../styles/Filter.css';
 
 const Filter = () => (
