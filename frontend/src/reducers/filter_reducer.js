@@ -3,7 +3,6 @@ const initialState = {
   highPrice: 80000,
   colors: '',
   brand: '',
-  name: '',
 };
 
 export default function (state = initialState, action) {
