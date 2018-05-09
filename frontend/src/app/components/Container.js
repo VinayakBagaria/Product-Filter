@@ -6,7 +6,7 @@ import ProductContainer from './ProductContainer';
 import Paginator from './Paginator';
 import ProductDescription from './ProductDescription';
 import { fetchData, changePage, brandFilter } from './../../actions';
-import './Container.css';
+import './../styles/Container.css';
 
 class Container extends Component {
   state = {

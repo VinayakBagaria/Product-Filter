@@ -1,7 +1,7 @@
 import React from 'react';
 import PriceFilter from './PriceFilter';
 import ColorFilter from './ColorFilter';
-import './Filter.css';
+import './../styles/Filter.css';
 
 const Filter = () => (
   <div className="filter-area">

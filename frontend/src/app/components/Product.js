@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductDescription from './ProductDescription';
-import './Product.css';
+import './../styles/Product.css';
 
 const Product = ({
   product: {
