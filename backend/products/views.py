@@ -5,7 +5,7 @@ from rest_framework import generics, mixins
 from rest_framework.pagination import PageNumberPagination
 
 from .models import Product, Choices
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, ChoicesSerializer
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -54,6 +54,24 @@ class AllProductsView(mixins.CreateModelMixin, generics.ListAPIView):
         if len(color) != 0 and len(color_array) == 0:
             qs = ''
 
+        return qs
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+
+
+class AllColorsView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field = 'pk'
+    serializer_class = ChoicesSerializer
+
+    def get_queryset(self):
+        qs = Choices.objects.all()
         return qs
 
     def perform_create(self, serializer):

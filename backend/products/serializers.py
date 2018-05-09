@@ -2,6 +2,10 @@ from rest_framework import serializers
 
 from .models import Product, Choices
 
+class ChoicesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Choices
+        fields = ['color',]
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
