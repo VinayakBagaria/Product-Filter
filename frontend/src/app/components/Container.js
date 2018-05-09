@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ReactPaginate from 'react-paginate';
+import Paginator from './Paginator';
 import Product from './Product';
 import Form from './Form';
 import { fetchData, changePage, brandFilter } from './../../actions';
@@ -64,23 +64,12 @@ class Container extends Component {
             ))}
           </div>
         )}
-        <div id="react-paginate">
-          <ReactPaginate
-            previousLabel="previous"
-            nextLabel="next"
-            breakLabel={<a href="/">...</a>}
-            breakClassName="break-me"
-            pageCount={totalPages}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={data =>
-              dispatch(changePage(this.state.url, data.selected + 1))
-            }
-            containerClassName="pagination"
-            subContainerClassName="pages pagination"
-            activeClassName="active"
-          />
-        </div>
+        <Paginator
+          totalPages={totalPages}
+          onPageChange={data =>
+            dispatch(changePage(this.state.url, data.selected + 1))
+          }
+        />
       </Fragment>
     );
   }
