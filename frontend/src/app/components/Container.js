@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Paginator from './Paginator';
-import Product from './Product';
 import Form from './Form';
+import ProductContainer from './ProductContainer';
+import Paginator from './Paginator';
+import ProductDescription from './ProductDescription';
 import { fetchData, changePage, brandFilter } from './../../actions';
 import './Container.css';
 
@@ -52,18 +53,7 @@ class Container extends Component {
             this.dispatchAction();
           }}
         />
-        {isFetching && products.length === 0 && <h2>Loading...</h2>}
-        {!isFetching && products.length === 0 && <h2>Empty.</h2>}
-        {products.length > 0 && (
-          <div
-            style={{ opacity: isFetching ? 0.5 : 1 }}
-            className="product-container"
-          >
-            {products.map(product => (
-              <Product key={product.pk} product={product} />
-            ))}
-          </div>
-        )}
+        <ProductContainer isFetching={isFetching} products={products} />
         <Paginator
           totalPages={totalPages}
           onPageChange={data =>
@@ -98,14 +88,7 @@ Container.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   count: PropTypes.number.isRequired,
   pageNumber: PropTypes.number.isRequired,
-  products: PropTypes.arrayOf(PropTypes.shape({
-    pk: PropTypes.number,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    discount: PropTypes.number,
-    brand: PropTypes.string,
-    color: PropTypes.arrayOf(PropTypes.string),
-  })).isRequired,
+  products: PropTypes.arrayOf(ProductDescription).isRequired,
   minPrice: PropTypes.number.isRequired,
   highPrice: PropTypes.number.isRequired,
   colors: PropTypes.string.isRequired,

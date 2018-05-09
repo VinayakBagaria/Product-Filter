@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import ProductDescription from './ProductDescription';
 import './Product.css';
 
 const Product = ({
@@ -40,14 +40,7 @@ const Product = ({
 };
 
 Product.propTypes = {
-  product: PropTypes.shape({
-    pk: PropTypes.number,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    discount: PropTypes.number,
-    brand: PropTypes.string,
-    color: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
+  product: ProductDescription.isRequired,
 };
 
 export default Product;
