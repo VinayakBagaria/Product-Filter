@@ -1,10 +1,10 @@
 import { fetchData } from './index';
 
-const priceFilter = (start: number, end: number) => ({
+const priceFilter = (minPrice: number, highPrice: number) => ({
   type: 'CHANGE_PRICE',
   payload: {
-    start,
-    end,
+    minPrice,
+    highPrice,
   },
 });
 

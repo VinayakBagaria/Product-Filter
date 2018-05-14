@@ -6,7 +6,7 @@ const requestData = () => ({
   type: 'REQUEST_DATA',
 });
 
-const receiveData = (json, pageNumber: number) => ({
+const receiveData = (json: any, pageNumber: number) => ({
   type: 'RECEIVE_DATA',
   payload: {
     data: json.data,
