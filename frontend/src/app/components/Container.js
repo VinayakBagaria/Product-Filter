@@ -8,7 +8,6 @@ import './../styles/Container.css';
 
 class Container extends Component {
   state = {
-    url: '',
     value: '',
   };
 
@@ -22,12 +21,8 @@ class Container extends Component {
   };
 
   dispatchAction() {
-    const url = this.makeUrl();
-    this.setState({
-      url,
-    });
     const { dispatch, pageNumber } = this.props;
-    dispatch(fetchData('/', pageNumber));
+    dispatch(fetchData(this.makeUrl(), pageNumber));
   }
 
   render() {
@@ -56,7 +51,7 @@ class Container extends Component {
         <Paginator
           totalPages={totalPages}
           onPageChange={data =>
-            dispatch(fetchData(this.state.url, data.selected + 1))
+            dispatch(fetchData(this.makeUrl(), data.selected + 1))
           }
         />
       </Fragment>
