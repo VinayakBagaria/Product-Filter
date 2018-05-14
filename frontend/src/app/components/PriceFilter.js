@@ -1,18 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { priceFilter } from './../../actions';
 
-class PriceFilter extends React.Component {
+type Props = {
+  dispatch: Function,
+};
+
+type State = {
+  val1: number,
+  val2: number,
+};
+
+class PriceFilter extends Component<Props, State> {
   state = {
     val1: 0,
     val2: 1000000,
   };
 
-  onRangeChange = first => e => {
-    const val = parseFloat(e.target.value);
-    let slide1 = this.state.val1;
-    let slide2 = this.state.val2;
+  onRangeChange = (first: boolean) => e => {
+    const val: number = parseFloat(e.target.value);
+    let slide1: number = this.state.val1;
+    let slide2: number = this.state.val2;
 
     if (first) {
       slide1 = val;
@@ -30,7 +38,7 @@ class PriceFilter extends React.Component {
   };
 
   render() {
-    const { val1, val2 } = this.state;
+    const { val1, val2 }: { val1: number, val2: number } = this.state;
     this.props.dispatch(priceFilter(val1, val2));
     return (
       <div className="range-slider">
@@ -84,9 +92,5 @@ class PriceFilter extends React.Component {
     );
   }
 }
-
-PriceFilter.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 export default connect()(PriceFilter);
