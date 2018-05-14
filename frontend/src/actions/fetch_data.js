@@ -18,17 +18,21 @@ function receiveData(json, pageNumber) {
   };
 }
 
-const fetchData = (url, pageNumber = 1) =>
-  function fetcher(dispatch) {
-    dispatch(requestData);
-    const axiosEndPoint = `${END_POINT}?page=${pageNumber}${url}`;
-    return axios(axiosEndPoint).then(json =>
-      dispatch(receiveData(json, pageNumber)));
-  };
+/*
+Thunk Middleware:
+When we dispatch a function, Redux Thunk will give it dispatch as an argument.
+If Redux Thunk middleware is enabled, any time you attempt to dispatch a function instead of an
+action object, the middleware will call that function with dispatch method itself as the first
+argument.
+This is required to dispatch functions one by one, abstracting from component itself.
+*/
+const fetchData = (url, pageNumber = 1) => dispatch => {
+  dispatch(requestData);
+  const axiosEndPoint = `${END_POINT}?page=${pageNumber}${url}`;
+  axios(axiosEndPoint).then(json => dispatch(receiveData(json, pageNumber)));
+};
 
-const changePage = (url, pageNumber) =>
-  function changer(dispatch) {
-    dispatch(fetchData(url, pageNumber));
-  };
+const changePage = (url, pageNumber) => dispatch =>
+  dispatch(fetchData(url, pageNumber));
 
 export { fetchData, changePage };
