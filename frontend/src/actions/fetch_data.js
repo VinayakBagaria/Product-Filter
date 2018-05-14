@@ -1,12 +1,32 @@
 import axios from 'axios';
+import type { ProductDescription } from '../app/ProductDescription';
 
 const END_POINT = '/api/all';
 
-const requestData = () => ({
+type RequestDataAction = {
+  type: 'REQUEST_DATA',
+};
+
+const requestData = (): RequestDataAction => ({
   type: 'REQUEST_DATA',
 });
 
-const receiveData = (json: any, pageNumber: number) => ({
+type ServerResponse = {
+  count: number,
+  results: Array<ProductDescription>,
+};
+
+type ReceiveDataPayload = {
+  data: ServerResponse,
+  pageNumber: number,
+};
+
+type ReceiveDataAction = {
+  type: 'RECEIVE_DATA',
+  payload: ReceiveDataPayload,
+};
+
+const receiveData = (json: any, pageNumber: number): ReceiveDataAction => ({
   type: 'RECEIVE_DATA',
   payload: {
     data: json.data,
@@ -25,8 +45,8 @@ This is required to dispatch functions one by one, abstracting from component it
 const fetchData = (url: string, pageNumber?: number = 1) => (
   dispatch: Function
 ) => {
-  dispatch(requestData);
-  const axiosEndPoint = `${END_POINT}?page=${pageNumber}${url}`;
+  dispatch(requestData());
+  const axiosEndPoint: string = `${END_POINT}?page=${pageNumber}${url}`;
   axios(axiosEndPoint).then(json => dispatch(receiveData(json, pageNumber)));
 };
 
