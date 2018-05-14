@@ -6,7 +6,7 @@ const requestData = () => ({
   type: 'REQUEST_DATA',
 });
 
-const receiveData = (json, pageNumber) => ({
+const receiveData = (json, pageNumber: number) => ({
   type: 'RECEIVE_DATA',
   payload: {
     data: json.data,
@@ -22,7 +22,9 @@ action object, the middleware will call that function with dispatch method itsel
 argument.
 This is required to dispatch functions one by one, abstracting from component itself.
 */
-const fetchData = (url, pageNumber = 1) => dispatch => {
+const fetchData = (url: string, pageNumber?: number = 1) => (
+  dispatch: Function
+) => {
   dispatch(requestData);
   const axiosEndPoint = `${END_POINT}?page=${pageNumber}${url}`;
   axios(axiosEndPoint).then(json => dispatch(receiveData(json, pageNumber)));
