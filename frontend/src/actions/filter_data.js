@@ -18,10 +18,9 @@ const brandFilterFunction = brand => ({
   payload: brand,
 });
 
-const brandFilter = (brand, url, pageNumber) =>
-  function filterBrand(dispatch) {
-    dispatch(brandFilterFunction(brand));
-    return dispatch(fetchData(url, pageNumber));
-  };
+const brandFilter = (brand, url, pageNumber) => dispatch => {
+  dispatch(brandFilterFunction(brand));
+  dispatch(fetchData(url, pageNumber));
+};
 
 export { priceFilter, colorFilter, brandFilter };
