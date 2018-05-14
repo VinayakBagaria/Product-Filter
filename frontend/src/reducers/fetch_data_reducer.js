@@ -1,5 +1,5 @@
 const initialState = {
-  count: 0,
+  totalPages: 0,
   isFetching: false,
   products: [],
   pageNumber: 1,

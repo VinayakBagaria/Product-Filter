@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
-
-export default PropTypes.shape({
-  pk: PropTypes.number,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  discount: PropTypes.number,
-  brand: PropTypes.string,
-  color: PropTypes.arrayOf(PropTypes.string),
-});
+export type ProductDescription = {
+  pk: number,
+  name: string,
+  price: number,
+  discount: number,
+  brand: string,
+  color: Array<string>,
+};

@@ -1,23 +1,53 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, ProductContainer, Paginator } from './../containers';
-import ProductDescription from './../ProductDescription';
+import type { ProductDescription } from './../ProductDescription';
 import { fetchData, brandFilter } from './../../actions';
 import './../styles/Container.css';
 
-class Container extends Component {
+type Result = {
+  totalPages: number,
+  isFetching: boolean,
+  products: Array<ProductDescription>,
+  pageNumber: number,
+};
+
+type Filters = {
+  minPrice: number,
+  highPrice: number,
+  colors: string,
+  brand: string,
+};
+
+type Props = Result &
+  Filters & {
+    dispatch: Function,
+  };
+
+class Container extends Component<Props> {
+  static defaultProps = {
+    isFetching: false,
+    totalPages: 0,
+  };
+
   componentDidMount() {
     this.dispatchAction();
   }
 
-  makeUrl = (brand = this.props.brand) => {
-    const { minPrice, highPrice, colors } = this.props;
+  makeUrl = (brand: string = this.props.brand) => {
+    const {
+      minPrice,
+      highPrice,
+      colors,
+    }: { minPrice: number, highPrice: number, colors: string } = this.props;
     return `&pricelow=${minPrice}&pricehigh=${highPrice}&colors=${colors}&brand=${brand}`;
   };
 
   dispatchAction() {
-    const { dispatch, pageNumber } = this.props;
+    const {
+      dispatch,
+      pageNumber,
+    }: { dispatch: Function, pageNumber: number } = this.props;
     dispatch(fetchData(this.makeUrl(), pageNumber));
   }
 
@@ -33,7 +63,7 @@ class Container extends Component {
       <Fragment>
         <Form
           onChange={e => {
-            const { value } = e.target;
+            const { value }: { value: string } = e.target;
             dispatch(brandFilter(value, this.makeUrl(value), pageNumber));
           }}
           onSubmit={e => {
@@ -54,28 +84,11 @@ class Container extends Component {
 }
 
 function mapStateToProps(state) {
-  const { filters, result } = state;
+  const { filters, result }: { filters: Filters, result: Result } = state;
   return {
     ...filters,
     ...result,
   };
 }
-
-Container.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  pageNumber: PropTypes.number.isRequired,
-  products: PropTypes.arrayOf(ProductDescription).isRequired,
-  minPrice: PropTypes.number.isRequired,
-  highPrice: PropTypes.number.isRequired,
-  colors: PropTypes.string.isRequired,
-  brand: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
-
-Container.defaultProps = {
-  isFetching: false,
-  totalPages: 0,
-};
 
 export default connect(mapStateToProps)(Container);
