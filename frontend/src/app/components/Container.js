@@ -22,12 +22,12 @@ class Container extends Component {
   };
 
   dispatchAction() {
-    const newFilter = this.makeUrl();
+    const url = this.makeUrl();
     this.setState({
-      url: newFilter,
+      url,
     });
     const { dispatch, pageNumber } = this.props;
-    dispatch(fetchData(newFilter, pageNumber));
+    dispatch(fetchData(url, pageNumber));
   }
 
   render() {
