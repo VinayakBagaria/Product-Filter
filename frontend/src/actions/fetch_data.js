@@ -2,21 +2,17 @@ import axios from 'axios';
 
 const END_POINT = '/api/all';
 
-export function requestData() {
-  return {
-    type: 'REQUEST_DATA',
-  };
-}
+const requestData = () => ({
+  type: 'REQUEST_DATA',
+});
 
-function receiveData(json, pageNumber) {
-  return {
-    type: 'RECEIVE_DATA',
-    payload: {
-      data: json.data,
-      pageNumber,
-    },
-  };
-}
+const receiveData = (json, pageNumber) => ({
+  type: 'RECEIVE_DATA',
+  payload: {
+    data: json.data,
+    pageNumber,
+  },
+});
 
 /*
 Thunk Middleware:
@@ -32,7 +28,4 @@ const fetchData = (url, pageNumber = 1) => dispatch => {
   axios(axiosEndPoint).then(json => dispatch(receiveData(json, pageNumber)));
 };
 
-const changePage = (url, pageNumber) => dispatch =>
-  dispatch(fetchData(url, pageNumber));
-
-export { fetchData, changePage };
+export default fetchData;

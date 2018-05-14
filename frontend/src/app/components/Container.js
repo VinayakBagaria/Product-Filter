@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, ProductContainer, Paginator } from './../containers';
 import ProductDescription from './../ProductDescription';
-import { fetchData, changePage, brandFilter } from './../../actions';
+import { fetchData, brandFilter } from './../../actions';
 import './../styles/Container.css';
 
 class Container extends Component {
@@ -53,7 +53,7 @@ class Container extends Component {
         <Paginator
           totalPages={totalPages}
           onPageChange={data =>
-            dispatch(changePage(this.state.url, data.selected + 1))
+            dispatch(fetchData(this.state.url, data.selected + 1))
           }
         />
       </Fragment>
