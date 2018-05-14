@@ -5,9 +5,13 @@ import configureStore from './Store';
 import App from './app/App';
 import './index.css';
 
-ReactDOM.render(
-  <Provider store={configureStore()}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+const rootRef: HTMLElement | null = document.getElementById('root');
+
+if (rootRef !== null) {
+  ReactDOM.render(
+    <Provider store={configureStore()}>
+      <App />
+    </Provider>,
+    rootRef
+  );
+}
