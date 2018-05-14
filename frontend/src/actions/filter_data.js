@@ -8,7 +8,7 @@ const priceFilter = (start, end) => ({
   },
 });
 
-const colorFilter = colors => ({
+const colorFilter = (colors: string) => ({
   type: 'CHANGE_COLOR',
   payload: colors,
 });
