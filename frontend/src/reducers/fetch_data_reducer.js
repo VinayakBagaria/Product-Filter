@@ -1,3 +1,12 @@
+import type { ProductDescription } from '../app/ProductDescription';
+
+type InitialState = {
+  +totalPages: number,
+  +isFetching: boolean,
+  +products: Array<ProductDescription>,
+  +pageNumber: number,
+};
+
 const initialState = {
   totalPages: 0,
   isFetching: false,
@@ -5,9 +14,33 @@ const initialState = {
   pageNumber: 1,
 };
 
-let productsInPage = 0;
+type RequestDataAction = {
+  type: 'REQUEST_DATA',
+};
 
-export default function(state = initialState, action) {
+type ServerResponse = {
+  count: number,
+  results: Array<ProductDescription>,
+};
+
+type ReceiveDataPayload = {
+  data: ServerResponse,
+  pageNumber: number,
+};
+
+type ReceiveDataAction = {
+  type: 'RECEIVE_DATA',
+  payload: ReceiveDataPayload,
+};
+
+type Action = RequestDataAction | ReceiveDataAction;
+
+let productsInPage: number = 0;
+
+const fetchDataReducer = (
+  state: InitialState = initialState,
+  action: Action
+): InitialState => {
   switch (action.type) {
     case 'REQUEST_DATA':
       return {
@@ -17,12 +50,14 @@ export default function(state = initialState, action) {
     case 'RECEIVE_DATA': {
       const {
         payload: {
-          data: { results: products, count },
+          data: { count, results: products },
           pageNumber,
         },
-      } = action;
+      }: ReceiveDataAction = action;
+
       productsInPage = productsInPage === 0 ? products.length : productsInPage;
-      const totalPages = Math.ceil(count / productsInPage);
+      const totalPages: number = Math.ceil(count / productsInPage);
+
       return {
         isFetching: false,
         products,
@@ -33,4 +68,6 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default fetchDataReducer;
