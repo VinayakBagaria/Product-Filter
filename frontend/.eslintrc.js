@@ -2,12 +2,13 @@ const OFF = 0;
 const ERROR = 2;
 
 module.exports = {
-  extends: 'airbnb',
-  plugins: ['react', 'jsx-a11y', 'import'],
+  extends: ['airbnb', 'prettier'],
+  plugins: ['react', 'jsx-a11y', 'import', 'prettier'],
   parser: 'babel-eslint',
   // stop eslint from looking for a config file in parent folders
   root: true,
   rules: {
+    'prettier/prettier': ERROR,
     /*
     If a JS object has a setter for a property, make sure there exists a getter property to read it. Reverse may not be true.
     */
