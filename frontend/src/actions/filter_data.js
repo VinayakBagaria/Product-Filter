@@ -1,6 +1,6 @@
 import { fetchData } from './index';
 
-const priceFilter = (start, end) => ({
+const priceFilter = (start: number, end: number) => ({
   type: 'CHANGE_PRICE',
   payload: {
     start,
@@ -13,12 +13,14 @@ const colorFilter = (colors: string) => ({
   payload: colors,
 });
 
-const brandFilterFunction = brand => ({
+const brandFilterFunction = (brand: string) => ({
   type: 'CHANGE_BRAND',
   payload: brand,
 });
 
-const brandFilter = (brand, url, pageNumber) => dispatch => {
+const brandFilter = (brand: string, url: string, pageNumber: number) => (
+  dispatch: Function
+) => {
   dispatch(brandFilterFunction(brand));
   dispatch(fetchData(url, pageNumber));
 };
