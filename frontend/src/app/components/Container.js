@@ -9,7 +9,6 @@ import './../styles/Container.css';
 class Container extends Component {
   componentDidMount() {
     this.dispatchAction();
-    this.inputRef = React.createRef();
   }
 
   makeUrl = (brand = this.props.brand) => {
@@ -33,7 +32,6 @@ class Container extends Component {
     return (
       <Fragment>
         <Form
-          ref={this.inputRef}
           onChange={e => {
             const { value } = e.target;
             dispatch(brandFilter(value, this.makeUrl(value), pageNumber));
