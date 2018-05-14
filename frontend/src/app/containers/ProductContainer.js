@@ -23,14 +23,16 @@ const ProductContainer = ({ isFetching, products }) => (
 
 ProductContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.shape({
-    pk: PropTypes.number,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    discount: PropTypes.number,
-    brand: PropTypes.string,
-    color: PropTypes.arrayOf(PropTypes.string),
-  })).isRequired,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      pk: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      discount: PropTypes.number,
+      brand: PropTypes.string,
+      color: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
 };
 
 export default ProductContainer;

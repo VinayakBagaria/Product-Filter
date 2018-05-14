@@ -5,7 +5,7 @@ const initialState = {
   brand: '',
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_PRICE':
       return {

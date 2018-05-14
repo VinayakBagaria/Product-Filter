@@ -3,20 +3,22 @@ import ProductDescription from './../ProductDescription';
 import './../styles/Product.css';
 
 const Product = ({
-  product: {
-    name, brand, price, discount, rating, color,
-  },
+  product: { name, brand, price, discount, rating, color },
 }) => {
   const stars = [];
   for (let i = 1; i <= rating; i += 1) {
-    stars.push(<li key={i}>
-      <span className="fa fa-star" />
-    </li>);
+    stars.push(
+      <li key={i}>
+        <span className="fa fa-star" />
+      </li>
+    );
   }
   for (let i = rating + 1; i <= 5; i += 1) {
-    stars.push(<li key={i}>
-      <span className="fa fa-star-o" />
-    </li>);
+    stars.push(
+      <li key={i}>
+        <span className="fa fa-star-o" />
+      </li>
+    );
   }
 
   return (

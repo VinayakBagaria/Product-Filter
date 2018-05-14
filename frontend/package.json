@@ -24,22 +24,21 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "flow": "flow",
-    "prettier": "prettier --write **/*.js",
+    "prettier": "prettier --write \"./src/**/*.js\"",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "npm run prettier",
-      "git add"
-    ]
+    "*.js": ["npm run prettier", "git add"]
   },
   "proxy": "http://localhost:8000",
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",

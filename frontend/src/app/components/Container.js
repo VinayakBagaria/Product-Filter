@@ -27,12 +27,16 @@ class Container extends Component {
       url,
     });
     const { dispatch, pageNumber } = this.props;
-    dispatch(fetchData(url, pageNumber));
+    dispatch(fetchData('/', pageNumber));
   }
 
   render() {
     const {
-      isFetching, totalPages, products, dispatch, pageNumber,
+      isFetching,
+      totalPages,
+      products,
+      dispatch,
+      pageNumber,
     } = this.props;
     return (
       <Fragment>

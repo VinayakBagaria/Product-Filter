@@ -19,7 +19,8 @@ class ColorFilter extends React.Component {
       colors.push({
         label: c.color,
         value: c.color,
-      }));
+      })
+    );
     this.setState({ colors });
   }
 
@@ -37,7 +38,9 @@ class ColorFilter extends React.Component {
             onMenuClose={() => {
               if (this.state.value.length) {
                 const result = this.state.value.map(a => a.label);
-                this.props.dispatch(colorFilter(Object.values(result).toString()));
+                this.props.dispatch(
+                  colorFilter(Object.values(result).toString())
+                );
               }
             }}
             options={this.state.colors}

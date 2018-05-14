@@ -7,7 +7,7 @@ const initialState = {
 
 let productsInPage = 0;
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_DATA':
       return {
