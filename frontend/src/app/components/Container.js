@@ -32,9 +32,8 @@ class Container extends Component {
 
   render() {
     const {
-      isFetching, count, products, dispatch, pageNumber,
+      isFetching, totalPages, products, dispatch, pageNumber,
     } = this.props;
-    const totalPages = count / products.length;
     return (
       <Fragment>
         <Form
@@ -71,7 +70,7 @@ function mapStateToProps(state) {
 
 Container.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  count: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
   pageNumber: PropTypes.number.isRequired,
   products: PropTypes.arrayOf(ProductDescription).isRequired,
   minPrice: PropTypes.number.isRequired,

@@ -5,6 +5,8 @@ const initialState = {
   pageNumber: 1,
 };
 
+let productsInPage = 0;
+
 export default function (state = initialState, action) {
   switch (action.type) {
     case 'REQUEST_DATA':
@@ -19,10 +21,12 @@ export default function (state = initialState, action) {
           pageNumber,
         },
       } = action;
+      productsInPage = productsInPage === 0 ? products.length : productsInPage;
+      const totalPages = Math.ceil(count / productsInPage);
       return {
         isFetching: false,
         products,
-        count,
+        totalPages,
         pageNumber,
       };
     }
