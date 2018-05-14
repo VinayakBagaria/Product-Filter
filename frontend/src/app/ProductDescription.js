@@ -4,5 +4,6 @@ export type ProductDescription = {
   price: number,
   discount: number,
   brand: string,
+  rating: number,
   color: Array<string>,
 };

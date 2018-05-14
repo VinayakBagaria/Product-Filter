@@ -1,19 +1,23 @@
 import React from 'react';
-import ProductDescription from './../ProductDescription';
+import type { ProductDescription } from './../ProductDescription';
 import './../styles/Product.css';
+
+type Props = {
+  product: ProductDescription,
+};
 
 const Product = ({
   product: { name, brand, price, discount, rating, color },
-}) => {
+}: Props) => {
   const stars = [];
-  for (let i = 1; i <= rating; i += 1) {
+  for (let i: number = 1; i <= rating; i += 1) {
     stars.push(
       <li key={i}>
         <span className="fa fa-star" />
       </li>
     );
   }
-  for (let i = rating + 1; i <= 5; i += 1) {
+  for (let i: number = rating + 1; i <= 5; i += 1) {
     stars.push(
       <li key={i}>
         <span className="fa fa-star-o" />
@@ -42,10 +46,6 @@ const Product = ({
       </div>
     </div>
   );
-};
-
-Product.propTypes = {
-  product: ProductDescription.isRequired,
 };
 
 export default Product;
