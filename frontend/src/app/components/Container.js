@@ -7,12 +7,9 @@ import { fetchData, brandFilter } from './../../actions';
 import './../styles/Container.css';
 
 class Container extends Component {
-  state = {
-    value: '',
-  };
-
   componentDidMount() {
     this.dispatchAction();
+    this.inputRef = React.createRef();
   }
 
   makeUrl = (brand = this.props.brand) => {
@@ -36,10 +33,9 @@ class Container extends Component {
     return (
       <Fragment>
         <Form
-          value={this.state.value}
+          ref={this.inputRef}
           onChange={e => {
             const { value } = e.target;
-            this.setState({ value });
             dispatch(brandFilter(value, this.makeUrl(value), pageNumber));
           }}
           onSubmit={e => {

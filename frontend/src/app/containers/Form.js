@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({ value, onChange, onSubmit }) => (
+const Form = ({ onChange, onSubmit }) => (
   <div className="form-group">
     <button className="btn search" onClick={onSubmit}>
       Apply Filters
@@ -11,14 +11,12 @@ const Form = ({ value, onChange, onSubmit }) => (
       type="text"
       name="search"
       placeholder="Search by Brand"
-      value={value}
       onChange={onChange}
     />
   </div>
 );
 
 Form.propTypes = {
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
