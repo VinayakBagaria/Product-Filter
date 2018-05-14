@@ -1,4 +1,6 @@
 [ignore]
+.*/node_modules/.*
+.*/build/.*
 
 [include]
 
@@ -7,5 +9,6 @@
 [lints]
 
 [options]
+all=true
 
 [strict]
