@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 import * as Animated from 'react-select/lib/animated';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { colorFilter } from './../../actions';
 
-class ColorFilter extends React.Component {
+type Color = {
+  label: string,
+  value: string,
+};
+
+type State = {
+  value: Array<Color>,
+  colors: Array<Color>,
+};
+
+type Props = {
+  dispatch: Function,
+};
+
+class ColorFilter extends Component<Props, State> {
   state = {
-    value: '',
+    value: [],
     colors: [],
   };
 
   async componentDidMount() {
-    const colorsApi = await axios('/api/colors');
-    const colors = [];
+    const colorsApi: any = await axios('/api/colors');
+    const colors: Array<Color> = [];
     colorsApi.data.map(c =>
       colors.push({
         label: c.color,
@@ -25,22 +38,22 @@ class ColorFilter extends React.Component {
   }
 
   render() {
-    this.props.dispatch(colorFilter(this.state.value));
+    const { value, colors } = this.state;
     return (
-      <React.Fragment>
-        {this.state.colors.length && (
+      <Fragment>
+        {colors.length && (
           <Select
             className="multi-select"
             closeMenuOnSelect={false}
             isMulti
             components={Animated}
-            onChange={value => this.setState({ value })}
+            onChange={val => this.setState({ value: val })}
             onMenuClose={() => {
-              if (this.state.value.length) {
-                const result = this.state.value.map(a => a.label);
-                this.props.dispatch(
-                  colorFilter(Object.values(result).toString())
-                );
+              if (value.length) {
+                const result: string = Object.values(
+                  value.map(a => a.label)
+                ).toString();
+                this.props.dispatch(colorFilter(result));
               }
             }}
             options={this.state.colors}
@@ -49,13 +62,9 @@ class ColorFilter extends React.Component {
             value={this.state.value}
           />
         )}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
-
-ColorFilter.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 export default connect()(ColorFilter);

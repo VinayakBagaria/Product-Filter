@@ -5,7 +5,7 @@ const initialState = {
   brand: '',
 };
 
-export default function(state = initialState, action) {
+const filterReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGE_PRICE':
       return {
@@ -26,4 +26,6 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default filterReducer;
