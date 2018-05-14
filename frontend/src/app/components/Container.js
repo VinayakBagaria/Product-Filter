@@ -75,6 +75,7 @@ Container.propTypes = {
 
 Container.defaultProps = {
   isFetching: false,
+  totalPages: 0,
 };
 
 export default connect(mapStateToProps)(Container);
