@@ -11,4 +11,15 @@
 [options]
 all=true
 
+# Look in node_modules for non-relative imports
+module.system.node.resolve_dirname=node_modules
+# ignore decorators
+esproposal.decorators=ignore
+# allow static and instance fields
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+# Ignore "Flow issue and fix me" comments.
+suppress_type=$FlowIssue
+suppress_type=$FlowFixMe
+
 [strict]
