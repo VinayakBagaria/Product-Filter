@@ -17,6 +17,13 @@ const Product = ({
       </li>
     );
   }
+  if (rating !== Math.ceil(rating)) {
+    stars.push(
+      <li>
+        <span className="fa fa-star-half-o" />
+      </li>
+    );
+  }
   for (let i: number = rating + 1; i <= 5; i += 1) {
     stars.push(
       <li key={i}>
