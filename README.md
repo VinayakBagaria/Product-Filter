@@ -45,5 +45,5 @@ Heroku will generate a url for you
 
 * [ ] Docker integration
 * [ ] GraphQL (which would reduce & simplify both frontend and backend code by a lot)
-* [ ] Flow (React dependency for type management - installed but not used)
+* [X] Flow (React dependency for type management - installed but not used)
 * [ ] Better development tools and deployment
