@@ -3,7 +3,7 @@ import type { ProductDescription } from '../app/ProductDescription';
 type InitialState = {
   +totalPages: number,
   +isFetching: boolean,
-  +products: Array<ProductDescription>,
+  +products: ProductDescription[],
   +pageNumber: number,
 };
 
@@ -20,7 +20,7 @@ type RequestDataAction = {
 
 type ServerResponse = {
   count: number,
-  results: Array<ProductDescription>,
+  results: ProductDescription[],
 };
 
 type ReceiveDataPayload = {

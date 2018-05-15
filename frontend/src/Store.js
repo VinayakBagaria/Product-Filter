@@ -3,10 +3,14 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
-const configureStore = () =>
-  createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
-  );
+let middleware: Function;
+
+if (process.env.NODE_ENV !== 'production') {
+  middleware = composeWithDevTools(applyMiddleware(thunkMiddleware));
+} else {
+  middleware = applyMiddleware(thunkMiddleware);
+}
+
+const configureStore: Function = () => createStore(rootReducer, middleware);
 
 export default configureStore;

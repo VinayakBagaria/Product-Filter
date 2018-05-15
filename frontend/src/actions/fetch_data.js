@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { ProductDescription } from '../app/ProductDescription';
 
-const END_POINT = '/api/all';
+const END_POINT: string = '/api/all';
 
 type RequestDataAction = {
   type: 'REQUEST_DATA',
@@ -13,7 +13,7 @@ const requestData = (): RequestDataAction => ({
 
 type ServerResponse = {
   count: number,
-  results: Array<ProductDescription>,
+  results: ProductDescription[],
 };
 
 type ReceiveDataPayload = {
