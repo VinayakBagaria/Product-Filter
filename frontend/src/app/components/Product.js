@@ -9,7 +9,7 @@ type Props = {
 const Product = ({
   product: { name, brand, price, discount, rating, color },
 }: Props) => {
-  const stars = [];
+  const stars: Array<any> = [];
   for (let i: number = 1; i <= rating; i += 1) {
     stars.push(
       <li key={i}>
