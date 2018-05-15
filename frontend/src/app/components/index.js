@@ -1,5 +1,7 @@
-import Container from './Container';
-import ColorFilter from './ColorFilter';
-import PriceFilter from './PriceFilter';
+import Filter from './Filter';
+import Form from './Form';
+import Paginator from './Paginator';
+import Product from './Product';
+import ProductContainer from './ProductContainer';
 
-export { Container, ColorFilter, PriceFilter };
+export { Filter, Form, Paginator, Product, ProductContainer };
