@@ -19,7 +19,7 @@ const Product = ({
   }
   if (rating !== Math.ceil(rating)) {
     stars.push(
-      <li>
+      <li key={Math.random()}>
         <span className="fa fa-star-half-o" />
       </li>
     );
