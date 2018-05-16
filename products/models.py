@@ -13,7 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=80)
     rating = models.FloatField(
         default=1.0,
-        validators=[MaxValueValidator(5.0), MinValueValidator(1.0)]
+        validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]
     )
     price = models.PositiveIntegerField(default=0)
     discount = models.PositiveSmallIntegerField(
