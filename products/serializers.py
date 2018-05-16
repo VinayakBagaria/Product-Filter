@@ -2,16 +2,18 @@ from rest_framework import serializers
 
 from .models import Product, Choices
 
+
 class ChoicesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choices
-        fields = ['color',]
+        fields = ['color', ]
+
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-	    'pk',
+            'pk',
             'name',
             'rating',
             'price',
