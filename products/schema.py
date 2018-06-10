@@ -1,23 +1,16 @@
 import graphene
+from graphene_django import DjangoObjectType, filter
 from .models import Product, Choices
 
 
-class ChoiceType(graphene.ObjectType):
-    id = graphene.String()
-    color = graphene.String()
+class ChoiceType(DjangoObjectType):
+    class Meta:
+        model = Choices
 
 
-class ProductType(graphene.ObjectType):
-    id = graphene.String()
-    name = graphene.String()
-    rating = graphene.Float()
-    price = graphene.String()
-    discount = graphene.String()
-    brand = graphene.String()
-    color = graphene.List(lambda: ChoiceType)
-
-    def resolve_color(self, args):
-        return self.color.all()
+class ProductType(DjangoObjectType):
+    class Meta:
+        model = Product
 
 
 class ProductsQueryType(graphene.ObjectType):
@@ -27,14 +20,14 @@ class ProductsQueryType(graphene.ObjectType):
     all_colors = graphene.List(ChoiceType)
     color = graphene.Field(ChoiceType, id=graphene.ID())
 
-    def resolve_all_products(self, args):
+    def resolve_all_products(self, info):
         return Product.objects.all()
 
-    def resolve_product(self, args, id):
+    def resolve_product(self, info, id):
         return Product.objects.get(pk=id)
 
-    def resolve_all_colors(self, args):
+    def resolve_all_colors(self, info):
         return Choices.objects.all()
 
-    def resolve_color(self, args, id):
+    def resolve_color(self, info, id):
         return Choices.objects.get(pk=id)
