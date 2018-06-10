@@ -1,24 +1,32 @@
-import graphene
+from graphene import List, ObjectType, relay
 from graphene_django import DjangoObjectType, filter
 from .models import Product, Choices
 
 
-class ChoiceType(DjangoObjectType):
+class ChoiceNode(DjangoObjectType):
     class Meta:
         model = Choices
+        filter_fields = ['color', ]
+        interfaces = (relay.Node,)
 
 
-class ProductType(DjangoObjectType):
+class ProductNode(DjangoObjectType):
     class Meta:
         model = Product
+        filter_fields = {
+            'name': ['exact', 'icontains', 'istartswith'],
+            'brand': ['exact', 'icontains'],
+            'color': ['in'],
+        }
+        interfaces = (relay.Node, )
 
 
 class ProductsQueryType(graphene.ObjectType):
-    all_products = graphene.List(ProductType)
-    product = graphene.Field(ProductType, id=graphene.ID())
+    product = relay.Node.Field(ProductNode)
+    all_products = DjangoFilterConnectionField(ProductNode)
 
-    all_colors = graphene.List(ChoiceType)
-    color = graphene.Field(ChoiceType, id=graphene.ID())
+    color = relay.Node.Field(ChoiceNode)
+    all_colors = DjangoFilterConnectionField(ChoiceNode)
 
     def resolve_all_products(self, info):
         return Product.objects.all()
