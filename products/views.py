@@ -1,9 +1,7 @@
 import math
 from django.db.models import Q
 from rest_framework import generics, mixins
-
 from rest_framework.pagination import PageNumberPagination
-
 from .models import Product, Choices
 from .serializers import ProductSerializer, ChoicesSerializer
 
