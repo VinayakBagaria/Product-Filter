@@ -24,9 +24,17 @@ class ProductsQueryType(graphene.ObjectType):
     all_products = graphene.List(ProductType)
     product = graphene.Field(ProductType, id=graphene.ID())
 
+    all_colors = graphene.List(ChoiceType)
+    color = graphene.Field(ChoiceType, id=graphene.ID())
+
     def resolve_all_products(self, args):
         return Product.objects.all()
 
-    def resolve_product(self, args):
-        id = args.get('id')
+    def resolve_product(self, args, id):
         return Product.objects.get(pk=id)
+
+    def resolve_all_colors(self, args):
+        return Choices.objects.all()
+
+    def resolve_color(self, args, id):
+        return Choices.objects.get(pk=id)
